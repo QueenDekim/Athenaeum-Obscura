@@ -14,18 +14,22 @@
     </div>
     
     <div class="sites-grid">
-        {% for site in sites %}
-        <div class="site-card">
-            <a href="/{{ site.name }}" target="_blank">
-                {% if site.preview %}
-                <img src="{{ site.preview }}" alt="{{ site.name }} preview" class="site-preview">
-                {% else %}
-                <div class="no-preview">No Preview</div>
-                {% endif %}
-                <h3>{{ site.name }}</h3>
-            </a>
-        </div>
-        {% endfor %}
+        {% if sites %}
+            {% for site in sites %}
+            <div class="site-card">
+                <a href="/{{ site.name }}" target="_blank">
+                    {% if site.preview %}
+                    <img src="{{ site.preview }}" alt="{{ site.name }} preview" class="site-preview">
+                    {% else %}
+                    <div class="no-preview">No Preview</div>
+                    {% endif %}
+                    <h3>{{ site.name }}</h3>
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>No sites found. Upload sites to <i style="color: #b3079c;">content</i> directory.</p>
+        {% endif %}
     </div>
     
     <!-- Навигация по страницам -->
