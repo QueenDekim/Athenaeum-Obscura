@@ -5,8 +5,7 @@
 
 ---
 
-## Table of Contents
-- [Table of Contents](#table-of-contents)
+### Table of Contents
 - [1. Introduction](#1-introduction)
   - [1.1. Project Overview](#11-project-overview)
   - [1.2. Purpose of Documentation](#12-purpose-of-documentation)
