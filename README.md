@@ -5,6 +5,32 @@
 
 ---
 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [1. Introduction](#1-introduction)
+  - [1.1. Project Overview](#11-project-overview)
+  - [1.2. Purpose of Documentation](#12-purpose-of-documentation)
+- [2. System Architecture](#2-system-architecture)
+  - [2.1. Overall Architecture](#21-overall-architecture)
+  - [2.2. System Components](#22-system-components)
+- [3. Detailed Component Descriptions](#3-detailed-component-descriptions)
+  - [3.1. `web_server.py` (Web Server)](#31-web_serverpy-web-server)
+  - [3.2. `app.py` (SiteManager and Main Logic)](#32-apppy-sitemanager-and-main-logic)
+  - [3.3. `generate_previews.py` (Preview Generator)](#33-generate_previewspy-preview-generator)
+  - [3.4. Frontend (HTML, CSS, JavaScript)](#34-frontend-html-css-javascript)
+- [4. Project Structure](#4-project-structure)
+- [5. Installation and Running](#5-installation-and-running)
+  - [5.1. Dependencies](#51-dependencies)
+  - [5.2. Installation](#52-installation)
+  - [5.3. Hosting Websites](#53-hosting-websites)
+  - [5.4. Running](#54-running)
+- [6. Functionality and Usage](#6-functionality-and-usage)
+  - [6.1. Main Page](#61-main-page)
+  - [6.2. Viewing Sites](#62-viewing-sites)
+  - [6.3. Preview Generation](#63-preview-generation)
+- [7. Error Handling and Limitations](#7-error-handling-and-limitations)
+- [8. TODO List](#8-todo-list)
+
 ## 1. Introduction
 
 ### 1.1. Project Overview
