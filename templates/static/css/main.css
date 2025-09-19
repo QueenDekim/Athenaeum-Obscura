@@ -354,9 +354,8 @@ body.modal-open .grid-pattern {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding-top: 10vh;
     z-index: 100;
     opacity: 0;
     visibility: hidden;
@@ -650,7 +649,7 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: center;
     background: var(--primary);
-    border-radius: 50%;
+    border-radius: 7px;
     color: white;
     font-size: 1.2rem;
     transition: all 0.3s ease;
