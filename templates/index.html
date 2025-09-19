@@ -1,62 +1,191 @@
 {% include "header.html" %}
 
-<section class="sites-list">
-    <div class="header-row">
-        <h2>Available Sites:</h2> <!-- Page {{ current_page }} of {{ total_pages }} -->
-        <div class="refresh-area">
-            <button id="refresh-button" class="refresh-button">
-                <span class="refresh-icon">↻</span> Refresh
-            </button>
-            <div class="last-update">
-                Last update: {{ last_update|timestamp }}
+<div class="grid-pattern"></div>
+<div class="container">
+    <div class="header">
+        <h1>ATHENAEUM OBSCURA</h1>
+        <p>A platform for hosting static websites</p>
+    </div>
+    <div class="main-card-outer">
+        <div class="main-card-inner">
+            <div class="main-card-header">
+                <div class="main-card-title">AVAILABLE SITES:</div>
+                <div class="button-group">
+                    <button class="btn refresh-btn" id="refresh-button">
+                        <i class="fas fa-sync"></i>
+                    </button>
+                    <button class="btn settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="content-area">
+                <div id="sites-list">
+                    {% if sites %}
+                        <div class="site-grid">
+                            {% for site in sites %}
+                            <div class="site-card" data-site="{{ site.name }}">
+                                <a href="/{{ site.name }}" target="_blank">
+                                    {% if site.preview %}
+                                    <div class="site-preview-container">
+                                        <img src="{{ site.preview }}" alt="{{ site.name }} preview" class="site-preview">
+                                    </div>
+                                    {% else %}
+                                    <div class="no-preview">No Preview</div>
+                                    {% endif %}
+                                    <div class="site-info">
+                                        <h3>{{ site.name }}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    <p class="no-sites">No sites found. Upload sites to <span class="content-highlight">content</span> directory.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <button class="page-btn prev-page" data-page="{{ current_page - 1 }}">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            {% endif %}
+            
+            {% for p in range(1, total_pages + 1) %}
+                {% if p == current_page %}
+                    <button class="page-btn active">{{ p }}</button>
+                {% else %}
+                    <button class="page-btn" data-page="{{ p }}">{{ p }}</button>
+                {% endif %}
+            {% endfor %}
+            
+            {% if current_page < total_pages %}
+                <button class="page-btn next-page" data-page="{{ current_page + 1 }}">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer">
+        © 2025 Athenaeum Obscura. All rights reserved. | v{{ version }}
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settings-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="modal-title">SETTINGS</div>
+            <div class="close-btn">&times;</div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-sidebar">
+                <div class="sidebar-item active" data-tab="base-settings">Base settings</div>
+                <div class="sidebar-item" data-tab="color-schemes">Color schemes</div>
+                <div class="sidebar-item" data-tab="about">About</div>
+            </div>
+            <div class="modal-content">
+                <div id="base-settings" class="tab-content active">
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label class="form-label">Sites directory</label>
+                            <div class="input-group">
+                                <input type="text" placeholder="content/" value="content/" readonly>
+                                <span class="folder-icon">
+                                    <i class="fas fa-folder-open"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Auto refresh</label>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="auto-refresh">
+                                <label for="auto-refresh">Enable auto refresh</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Refresh interval</label>
+                            <div class="slider-container">
+                                <input type="range" min="10" max="300" value="60" class="slider" id="refresh-interval">
+                                <span class="slider-value">60s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="color-schemes" class="tab-content">
+                    <div class="color-schemes">
+                        <div class="color-scheme" data-theme="midnight-bloom">
+                            <div class="color-palette">
+                                <div class="color-swatch" style="background: #d1c9ff;"></div>
+                                <div class="color-swatch" style="background: #795ec9;"></div>
+                                <div class="color-swatch" style="background: #171128;"></div>
+                            </div>
+                            <div class="color-name">Midnight Bloom</div>
+                        </div>
+                        <div class="color-scheme" data-theme="cyber-lagoon">
+                            <div class="color-palette">
+                                <div class="color-swatch" style="background: #66fcf0;"></div>
+                                <div class="color-swatch" style="background: #46a29e;"></div>
+                                <div class="color-swatch" style="background: #103634;"></div>
+                            </div>
+                            <div class="color-name">Cyber Lagoon</div>
+                        </div>
+                        <div class="color-scheme" data-theme="vscode">
+                            <div class="color-palette">
+                                <div class="color-swatch" style="background: #3793ff;"></div>
+                                <div class="color-swatch" style="background: #333333;"></div>
+                                <div class="color-swatch" style="background: #1e1e1e;"></div>
+                            </div>
+                            <div class="color-name">VSCode</div>
+                        </div>
+                        <div class="color-scheme" data-theme="rose-fog">
+                            <div class="color-palette">
+                                <div class="color-swatch" style="background: #f9f2f1;"></div>
+                                <div class="color-swatch" style="background: #eed9d3;"></div>
+                                <div class="color-swatch" style="background: #dec7c4;"></div>
+                            </div>
+                            <div class="color-name">Rose Fog</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="about" class="tab-content">
+                    <div class="about-info">
+                        <div class="about-row">
+                            <img src="/static/favicon.png" alt="Athenaeum Obscura" class="logo">
+                            <div>
+                                <div>Athenaeum Obscura</div>
+                                <div style="color: var(--primary);">v{{ version }}</div>
+                            </div>
+                        </div>
+                        <div class="about-row">
+                            <div>Developer:</div>
+                            <div>Dekim</div>
+                        </div>
+                        <div class="about-row">
+                            <div>Designer:</div>
+                            <div>Captain Moris</div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/QueenDekim/athenaeum-obscura" class="social-icon" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                    <div class="license">License: MIT</div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="sites-grid">
-        {% if sites %}
-            {% for site in sites %}
-            <div class="site-card">
-                <a href="/{{ site.name }}" target="_blank">
-                    {% if site.preview %}
-                    <img src="{{ site.preview }}" alt="{{ site.name }} preview" class="site-preview">
-                    {% else %}
-                    <div class="no-preview">No Preview</div>
-                    {% endif %}
-                    <h3>{{ site.name }}</h3>
-                </a>
-            </div>
-            {% endfor %}
-        {% else %}
-        <p>No sites found. Upload sites to <i style="color: #b3079c;">content</i> directory.</p>
-        {% endif %}
-    </div>
-    
-    <!-- Навигация по страницам -->
-    <div class="pagination">
-        {% if current_page > 1 %}
-            <a href="/?page={{ current_page - 1 }}" class="page-link">← Previous</a>
-        {% endif %}
-        
-        {% for p in range(1, total_pages + 1) %}
-            {% if p == current_page %}
-                <span class="current-page">{{ p }}</span>
-            {% else %}
-                <a href="/?page={{ p }}" class="page-link">{{ p }}</a>
-            {% endif %}
-        {% endfor %}
-        
-        {% if current_page < total_pages %}
-            <a href="/?page={{ current_page + 1 }}" class="page-link">Next →</a>
-        {% endif %}
-    </div>
-</section>
-
-</main>
+</div>
 
 <!-- Модальное окно обновления -->
 <div id="refresh-modal" class="refresh-modal">
-    <div class="modal-content">
+    <div class="modal-content-refresh">
         <div class="loader"></div>
         <p class="loading-text">Обновление списка сайтов...</p>
         <p class="result-text" style="display: none;"></p>
