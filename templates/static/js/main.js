@@ -26,43 +26,43 @@ class ThemeManager {
 }
 
 // Grid Pattern Generator
-function generateGridPattern() {
-    const gridPattern = document.querySelector('.grid-pattern');
-    if (!gridPattern) return;
+// function generateGridPattern() {
+//     const gridPattern = document.querySelector('.grid-pattern');
+//     if (!gridPattern) return;
 
-    const existingCanvas = gridPattern.querySelector('canvas');
-    if (existingCanvas) {
-        existingCanvas.remove();
-    }
+//     const existingCanvas = gridPattern.querySelector('canvas');
+//     if (existingCanvas) {
+//         existingCanvas.remove();
+//     }
 
-    const gridSize = 140;
-    const canvas = document.createElement('canvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+//     const gridSize = 140;
+//     const canvas = document.createElement('canvas');
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
     
-    const ctx = canvas.getContext('2d');
-    const gridColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--grid-line').trim();
+//     const ctx = canvas.getContext('2d');
+//     const gridColor = getComputedStyle(document.documentElement)
+//         .getPropertyValue('--grid-line').trim();
     
-    ctx.strokeStyle = gridColor;
-    ctx.lineWidth = 1;
+//     ctx.strokeStyle = gridColor;
+//     ctx.lineWidth = 1;
     
-    for (let x = 0; x <= canvas.width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-    }
+//     for (let x = 0; x <= canvas.width; x += gridSize) {
+//         ctx.beginPath();
+//         ctx.moveTo(x, 0);
+//         ctx.lineTo(x, canvas.height);
+//         ctx.stroke();
+//     }
     
-    for (let y = 0; y <= canvas.height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-    }
+//     for (let y = 0; y <= canvas.height; y += gridSize) {
+//         ctx.beginPath();
+//         ctx.moveTo(0, y);
+//         ctx.lineTo(canvas.width, y);
+//         ctx.stroke();
+//     }
     
-    gridPattern.appendChild(canvas);
-}
+//     gridPattern.appendChild(canvas);
+// }
 
 // Modal Management
 class ModalManager {
@@ -325,8 +325,8 @@ class AthenaeumApp {
     }
 
     init() {
-        generateGridPattern();
-        window.addEventListener('resize', () => generateGridPattern());
+        // generateGridPattern();
+        // window.addEventListener('resize', () => generateGridPattern());
         this.initThemeSelector();
         this.initPagination();
 
@@ -345,7 +345,7 @@ class AthenaeumApp {
                 const themeName = scheme.getAttribute('data-theme');
                 if (themeName) {
                     this.themeManager.applyTheme(themeName);
-                    setTimeout(() => generateGridPattern(), 100);
+                    // setTimeout(() => generateGridPattern(), 100);
                 }
             });
         });
