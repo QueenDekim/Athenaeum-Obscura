@@ -354,8 +354,9 @@ body.modal-open .grid-pattern {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 10vh;
     z-index: 100;
     opacity: 0;
     visibility: hidden;
