@@ -297,12 +297,12 @@ body.modal-open .grid-pattern {
 .pagination {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 25px;
 }
 
 .page-btn {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 8px;
     border: 1px solid var(--pagination-inactive-color);
     display: flex;
@@ -415,7 +415,7 @@ body.modal-open .grid-pattern {
 
 .modal-body {
     display: flex;
-    height: 500px;
+    height: 400px;
 }
 
 .modal-sidebar {
