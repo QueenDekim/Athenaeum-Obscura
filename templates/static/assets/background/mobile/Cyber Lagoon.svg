@@ -1,0 +1,36 @@
+<svg width="412" height="917" viewBox="0 0 412 917" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_120_535)">
+<rect width="412" height="917" fill="#000606"/>
+<g clip-path="url(#clip1_120_535)">
+<rect width="412" height="917" fill="black"/>
+<line x1="-52" y1="142.5" x2="430" y2="142.5" stroke="#1B1B1B"/>
+<line x1="-6" y1="47.5" x2="430" y2="47.5" stroke="#1B1B1B"/>
+<line x1="-52" y1="319.5" x2="422" y2="319.5" stroke="#1B1B1B"/>
+<line x1="-6" y1="439.5" x2="430" y2="439.5" stroke="#1B1B1B"/>
+<line x1="-6" y1="556.5" x2="422" y2="556.5" stroke="#1B1B1B"/>
+<line x1="-5" y1="733.5" x2="436" y2="733.5" stroke="#1B1B1B"/>
+<line x1="-6" y1="892.5" x2="422" y2="892.5" stroke="#1B1B1B"/>
+<line x1="346.5" y1="-13" x2="346.5" y2="923" stroke="#1B1B1B"/>
+<line x1="277.5" y1="-2.06722e-08" x2="277.5" y2="923" stroke="#1B1B1B"/>
+<line x1="206.5" y1="-8" x2="206.5" y2="923" stroke="#1B1B1B"/>
+<line x1="137.5" y1="-8" x2="137.5" y2="923" stroke="#1B1B1B"/>
+<line x1="66.5" y1="-8" x2="66.5" y2="923" stroke="#1B1B1B"/>
+<g filter="url(#filter0_f_120_535)">
+<path d="M371 411.557C371 576.898 309.18 687 200.755 687C102.584 687 23 592.719 23 427.377C23 262.036 108.507 427.377 200.755 128C298.927 128 371 246.215 371 411.557Z" fill="#46A29E"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_120_535" x="-977" y="-872" width="2348" height="2559" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="500" result="effect1_foregroundBlur_120_535"/>
+</filter>
+<clipPath id="clip0_120_535">
+<rect width="412" height="917" fill="white"/>
+</clipPath>
+<clipPath id="clip1_120_535">
+<rect width="412" height="917" fill="white"/>
+</clipPath>
+</defs>
+</svg>

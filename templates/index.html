@@ -9,13 +9,15 @@
     <div class="main-card-outer">
         <div class="main-card-inner">
             <div class="main-card-header">
-                <div class="main-card-title">AVAILABLE SITES:</div>
+                <div class="main-card-title">AVAILABLE SITES</div>
                 <div class="button-group">
                     <button class="btn refresh-btn" id="refresh-button">
-                        <i class="fas fa-sync"></i>
+                        <!-- <i class="fas fa-sync"></i> -->
+                        <img src="/static/assets/icons/Reboot.svg" width="25px" />
                     </button>
                     <button class="btn settings-btn">
-                        <i class="fas fa-cog"></i>
+                        <!-- <i class="fas fa-cog"></i> -->
+                            <img src="/static/assets/icons/Settings.svg" width="33px" />
                     </button>
                 </div>
             </div>
@@ -53,11 +55,27 @@
                 </button>
             {% endif %}
             
-            {% for p in range(1, total_pages + 1) %}
-                {% if p == current_page %}
-                    <button class="page-btn active">{{ p }}</button>
-                {% else %}
-                    <button class="page-btn" data-page="{{ p }}">{{ p }}</button>
+            {% if total_pages <= 3 %}
+                {% set start_page = 1 %}
+                {% set end_page = total_pages %}
+            {% elif current_page == 1 %}
+                {% set start_page = 1 %}
+                {% set end_page = 3 %}
+            {% elif current_page == total_pages %}
+                {% set start_page = total_pages - 2 %}
+                {% set end_page = total_pages %}
+            {% else %}
+                {% set start_page = current_page - 1 %}
+                {% set end_page = current_page + 1 %}
+            {% endif %}
+
+            {% for p in range(start_page, end_page + 1) %}
+                {% if p > 0 and p <= total_pages %}
+                    {% if p == current_page %}
+                        <button class="page-btn active"><b>{{ p }}</b></button>
+                    {% else %}
+                        <button class="page-btn" data-page="{{ p }}"><b>{{ p }}</b></button>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
             
@@ -92,10 +110,10 @@
                         <div class="form-group">
                             <label class="form-label">Sites directory</label>
                             <div class="input-group">
-                                <input type="text" placeholder="content/" value="content/" readonly>
-                                <span class="folder-icon">
+                                <input type="text" placeholder="content/" value="content/">
+                                <!-- <span class="folder-icon">
                                     <i class="fas fa-folder-open"></i>
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                         <div class="form-group">
@@ -152,28 +170,32 @@
                 </div>
                 <div id="about" class="tab-content">
                     <div class="about-info">
-                        <div class="about-row">
-                            <img src="/static/favicon.png" alt="Athenaeum Obscura" class="logo">
-                            <div>
-                                <div>Athenaeum Obscura</div>
-                                <div style="color: var(--primary);">v{{ version }}</div>
+                        <div class="about-row about-header">
+                            <div class="logo logo-dynamic"></div>
+                            <div class="title-version">
+                                <div class="about-title">Athenaeum Obscura</div>
+                                <div class="version-text">v{{ version }}</div>
                             </div>
-                        </div>
-                        <div class="about-row">
-                            <div>Developer:</div>
-                            <div>Dekim</div>
-                        </div>
-                        <div class="about-row">
-                            <div>Designer:</div>
-                            <div>Captain Moris</div>
-                        </div>
+                        </div>                        <div class="about-devs">
+                        <div class="about-devs">
+                            <div class="about-row">
+                                <div>Developer:</div>
+                                <div>Dekim</div>
+                            </div>
+                            <div class="about-row">
+                                <div>Designer:</div>
+                                <div>Captain Moris</div>
+                            </div>
+                        </div>                        </div>
                     </div>
                     <div class="social-links">
                         <a href="https://github.com/QueenDekim/athenaeum-obscura" class="social-icon" target="_blank">
-                            <i class="fab fa-github"></i>
+                            <!-- <i class="fab fa-github"></i> -->
+                            <img src="/static/assets/icons/GitHub.svg" width="33px" />
                         </a>
                         <a href="#" class="social-icon">
-                            <i class="fab fa-discord"></i>
+                            <!-- <i class="fab fa-discord"></i> -->
+                            <img src="/static/assets/icons/Patreon.svg" width="33px" />
                         </a>
                     </div>
                     <div class="license">License: MIT</div>

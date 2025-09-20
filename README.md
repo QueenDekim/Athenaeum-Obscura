@@ -1,5 +1,4 @@
-
-| <img src="templates/static/favicon.png" alt="icon" width="50"/>   | <h1>Athenaeum Obscura</h1> *A platform for hosting static websites*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `v1.0` |
+| <img src="templates/static/favicon.svg" alt="icon" width="50"/>   | <h1>Athenaeum Obscura</h1> *A platform for hosting static websites*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `v1.0` |
 | ----------------------------------------------------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
 |                                                                   |<div id="header" align="center"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/QueenDekim/Athenaeum-Obscura"> <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/QueenDekim/Athenaeum-Obscura"><br><img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/QueenDekim/Athenaeum-Obscura/total"> <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/QueenDekim/Athenaeum-Obscura"><br><a href="./LICENSE" target="_blank"> <img src="https://img.shields.io/github/license/QueenDekim/Athenaeum-Obscura"> </a></div>|        |
 
@@ -27,29 +26,35 @@
   - [6.1. Main Page](#61-main-page)
   - [6.2. Viewing Sites](#62-viewing-sites)
   - [6.3. Preview Generation](#63-preview-generation)
+  - [6.4. Settings](#64-settings)
 - [7. Error Handling and Limitations](#7-error-handling-and-limitations)
 - [8. TODO List](#8-todo-list)
 
 ## 1. Introduction
 
 ### 1.1. Project Overview
-**Athenaeum Obscura** is a user-friendly web platform designed for local hosting and management of static websites. It automatically generates visual previews for each site and organizes them into a convenient collection, acting as a "gallery" or "repository" of digital artifacts. This project allows users to easily browse and access their local web projects through a centralized interface.
+**Athenaeum Obscura** is a user-friendly web platform designed for local hosting and management of static websites. It automatically generates visual previews for each site and organizes them into a convenient collection, acting as a "gallery" or "repository" of digital artifacts. This project allows users to easily browse and access their local web projects through a centralized interface with customizable themes.
 
 ### 1.2. Purpose of Documentation
 This document provides a detailed yet approachable technical description of the architecture, components, functionality, and deployment of the "Athenaeum Obscura" project. It is intended for developers, system administrators, and anyone interested in understanding how the system works.
+
+---
+
+> Screenshots of the project are [here](assets/)<br>Screenshots of the themes are [here](assets/Themes/)
+
+---
 
 ## 2. System Architecture
 
 ### 2.1. Overall Architecture
 The "Athenaeum Obscura" system is built on a client-server architecture using the FastAPI framework for the backend and standard web technologies (HTML, CSS, JavaScript) for the frontend. A key feature is the asynchronous monitoring of file system changes and automatic preview generation using Playwright.
 
-
 ### 2.2. System Components
 
 *   **Web Server (FastAPI)**: The main backend component that handles HTTP requests, serves static files, and dynamically generates HTML pages.
 *   **SiteManager**: A Python class responsible for detecting, managing, and storing information about static websites. It runs in a separate thread to monitor changes in the file system.
 *   **Preview Generator (Playwright)**: An asynchronous module that uses Playwright to launch a headless browser and create screenshots (previews) of websites.
-*   **Frontend (Jinja2, HTML, CSS, JS)**: The user interface that displays the list of sites, their previews, and provides update functionality.
+*   **Frontend (Jinja2, HTML, CSS, JS)**: The user interface that displays the list of sites, their previews, and provides update functionality. Now with customizable themes, fonts, and dynamic backgrounds.
 *   **File System**: The storage location for static websites (`content/`) and generated previews (`templates/static/previews/`).
 *   **State File (`sites.json`)**: A JSON file used to save and load information about registered sites and their last update times.
 
@@ -62,11 +67,11 @@ The "Athenaeum Obscura" system is built on a client-server architecture using th
     *   **`start_server(site_manager, base_dir)`**: Initializes the FastAPI application.
     *   **Template Setup**: Uses Jinja2 for rendering HTML pages. Includes a custom filter `timestamp` for formatting time.
     *   **Static File Serving**:
-        *   `/static`: Serves common static files (CSS, JS, favicon) from `templates/static`.
+        *   `/static`: Serves common static files (CSS, JS, assets) from `templates/static`.
         *   `/{site_name}/static`: Dynamically mounts static files for each site (if they exist).
         *   `/{site_name}`: Mounts HTML files for each site, allowing direct access to them.
     *   **Main Page (`/`)**:
-        *   Displays a list of sites with pagination (4 items per page).
+        *   Displays a list of sites with pagination.
         *   Passes site information, current page, total number of pages, last update time, and application version to the template.
     *   **Update Endpoint (`/refresh`)**:
         *   Method: `POST`.
@@ -132,29 +137,22 @@ The "Athenaeum Obscura" system is built on a client-server architecture using th
 *   **`header.html`**: Contains meta tags, links to CSS, favicon, and the page header.
 *   **`footer.html`**: Contains the footer and a link to `main.js`.
 *   **`index.html`**:
-    *   The main page template.
-    *   Includes `header.html` and `footer.html`.
-    *   Displays the title "Available Sites" and a "Refresh" button.
-    *   Shows the last update time.
+    *   The main page template, including the settings modal.
+    *   Displays the title "Available Sites", refresh and settings buttons.
     *   Uses a Jinja2 loop to display site cards (`site-card`) with previews.
     *   Implements pagination for navigating through site pages.
     *   Includes a modal (`refresh-modal`) to display the update status.
-*   **`main.css`**: Defines styles for all interface elements, including the site grid, cards, pagination, refresh button, and modal window.
+*   **`main.css`**: Defines styles for all interface elements, including themes, fonts, backgrounds, site grid, cards, pagination, and modals.
 *   **`main.js`**:
-    *   Handles the click event on the "Refresh" button.
-    *   Displays a modal window with a loading indicator.
-    *   Sends a `POST` request to `/refresh`.
-    *   Sets a timeout for the request.
-    *   Handles the server response:
-        *   Displays a message about the update result.
-        *   If there are changes (`changes_count > 0`), reloads the page after 1 second.
-        *   If there are no changes, hides the modal after 3 seconds and also reloads the page (to account for removed sites).
-        *   Handles network/server errors.
+    *   Handles theme switching and saves the selected theme to `localStorage`.
+    *   Manages the settings modal (opening, closing, tab switching).
+    *   Handles the click event on the "Refresh" button, displaying a modal and sending a `POST` request to `/refresh`.
 
 ## 4. Project Structure
 
 ```
 Athenaeum-Obscura
+  ├── assets
   ├── content
   ├── src
   │   ├── app.py
@@ -163,11 +161,11 @@ Athenaeum-Obscura
   │   └── web_server.py
   ├── templates
   │   └── static
+  │   │   ├── assets
+  │   │   │   ├── background
+  │   │   │   ├── fonts
   │   │   ├── css
-  │   │   │   └── main.css
-  │   │   ├── favicon.png
   │   │   ├── js
-  │   │   │   └── main.js
   │   │   └── previews
   │   ├── footer.html
   │   ├── header.html
@@ -244,6 +242,12 @@ Clicking on a site card will redirect you to the corresponding static website, w
 *   Playwright is used to render the `index.html` of each site and create a screenshot.
 *   Generated previews are saved in `templates/static/previews/`.
 
+### 6.4. Settings
+*   **Theme Selection**: Users can choose from several visual themes, which change the application's color palette, background, and logo.
+*   **Auto-Refresh**: Enable or disable automatic refreshing of the site list.
+*   **Refresh Interval**: Configure the interval for automatic updates.
+*   **Sites Directory**: *This feature is currently in development and not yet available.*
+
 ## 7. Error Handling and Limitations
 
 *   **Missing `index.html`**: If a site's directory does not contain `index.html`, no preview will be generated, and a "No Preview" placeholder will be displayed on the main page.
@@ -259,3 +263,4 @@ Here are some potential enhancements we plan to implement in the future:
 1. **Dockerization**: Wrap the application in a Docker container for easier deployment and scalability.
 2. **File Upload/Deletion**: Add functionality to upload and delete website source files through the web interface.
 3. **Authorization**: Implement user authentication to secure the upload and deletion features.
+4. **Finalize Directory Selection**: Complete the implementation of the sites directory selection feature.

@@ -1,0 +1,30 @@
+<svg width="412" height="917" viewBox="0 0 412 917" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_120_531)">
+<rect width="412" height="917" fill="white"/>
+<line x1="-53" y1="136.5" x2="429" y2="136.5" stroke="#F2E1DB"/>
+<line x1="-10" y1="41.5" x2="426" y2="41.5" stroke="#F2E1DB"/>
+<line x1="-53" y1="313.5" x2="421" y2="313.5" stroke="#F2E1DB"/>
+<line x1="-7" y1="433.5" x2="429" y2="433.5" stroke="#F2E1DB"/>
+<line x1="-7" y1="550.5" x2="421" y2="550.5" stroke="#F2E1DB"/>
+<line x1="-6" y1="727.5" x2="435" y2="727.5" stroke="#F2E1DB"/>
+<line x1="-7" y1="886.5" x2="421" y2="886.5" stroke="#F2E1DB"/>
+<line x1="345.5" y1="-19" x2="345.5" y2="917" stroke="#F2E1DB"/>
+<line x1="276.5" y1="-6" x2="276.5" y2="917" stroke="#F2E1DB"/>
+<line x1="205.5" y1="-14" x2="205.5" y2="917" stroke="#F2E1DB"/>
+<line x1="136.5" y1="-14" x2="136.5" y2="917" stroke="#F2E1DB"/>
+<line x1="65.5" y1="-14" x2="65.5" y2="917" stroke="#F2E1DB"/>
+<g filter="url(#filter0_f_120_531)">
+<path d="M370 405.557C370 570.898 308.18 681 199.755 681C101.584 681 22 586.719 22 421.377C22 256.036 107.507 421.377 199.755 122C297.927 122 370 240.215 370 405.557Z" fill="#D4A59C"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_120_531" x="-978" y="-878" width="2348" height="2559" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="500" result="effect1_foregroundBlur_120_531"/>
+</filter>
+<clipPath id="clip0_120_531">
+<rect width="412" height="917" fill="white"/>
+</clipPath>
+</defs>
+</svg>

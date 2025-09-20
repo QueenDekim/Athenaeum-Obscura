@@ -95,6 +95,7 @@ def start_server(site_manager, base_dir: str):
     async def refresh_sites():
         """Обновляет список сайтов и дожидается завершения генерации превью"""
         try:
+            time.sleep(10)
             # Принудительно обновляем список и генерируем превью для новых сайтов
             # Добавляем таймаут 60 секунд
             changes_count = await asyncio.wait_for(
